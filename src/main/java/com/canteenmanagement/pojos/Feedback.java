@@ -1,5 +1,5 @@
 package com.canteenmanagement.pojos;
 
-public enum LanguageEnum {
+public class Feedback {
 
 }
