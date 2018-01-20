@@ -2,6 +2,9 @@ package com.canteenmanagement.pojos;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,6 +43,7 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="product_id")
 	public Integer getProductId() {
 		return productId;
 	}
@@ -90,6 +94,8 @@ public class Product {
 		this.description = description;
 	}
 
+	@ElementCollection
+	@CollectionTable(name="product_tags",joinColumns=@JoinColumn(name="product_id"))
 	public List<String> getTags() {
 		return tags;
 	}

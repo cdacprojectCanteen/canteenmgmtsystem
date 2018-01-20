@@ -14,12 +14,12 @@ import com.canteenmanagement.pojos.Product;
 @Transactional
 public class ProductServiceImplementation implements ProductService {
 	
-	@Autowired
-	private ProductDao productDao;
+//	@Autowired
+//	private ProductDao productDao;
 
 	@Override
 	public void add(Product product) {
-		productDao.add(product);
+//		productDao.add(product);
 	}
 
 	@Override

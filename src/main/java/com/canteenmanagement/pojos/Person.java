@@ -17,24 +17,30 @@ import com.canteenmanagement.utils.LanguageEnum;
 public abstract class Person {
 	private Integer id;
 	
-	private String name;
-	private Address address;
+	private String firstName;
+	private String lastName; //OPTIONAL
+	private String passHash; //TODO integrate with BCrypt
+	private Address address; //OPTIONAL
 	private PhoneNo phoneNo;
-	private Email emailId;
+	private Email emailId;	//REQUIRED
 	private LocalDate dateOfBirth;
-	private LocalDate dateOfJoining;
-	private LanguageEnum preferredLanguage;
+	private LocalDate dateOfJoining; //AUTOMATIC
+	private LanguageEnum preferredLanguage; //FUTURE IMPLEMENTATION
 	
 	
 	public Person() {
 		super();
 	}
 
-
-	public Person(String name, Address address, PhoneNo phoneNo, Email emailId, LocalDate dateOfBirth,
-			LocalDate dateOfJoining, LanguageEnum preferredLanguage) {
+	
+	
+	public Person(Integer id, String firstName, String lastName, String passHash, Address address, PhoneNo phoneNo,
+			Email emailId, LocalDate dateOfBirth, LocalDate dateOfJoining, LanguageEnum preferredLanguage) {
 		super();
-		this.name = name;
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.passHash = passHash;
 		this.address = address;
 		this.phoneNo = phoneNo;
 		this.emailId = emailId;
@@ -44,10 +50,7 @@ public abstract class Person {
 	}
 
 
-//	public abstract Integer getId();
-//	
-//	public abstract void setId(Integer id);
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -58,15 +61,41 @@ public abstract class Person {
 		this.id = id;
 	}
 
-
-	public String getName() {
-		return name;
+	@Column(name="first_name")
+	public String getFirstName() {
+		return firstName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+
+
+	@Column(name="last_name")
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	@Column(name="pass_hash")
+	public String getPassHash() {
+		return passHash;
+	}
+
+
+
+	public void setPassHash(String passHash) {
+		this.passHash = passHash;
+	}
+
 
 
 	public Address getAddress() {
@@ -78,7 +107,7 @@ public abstract class Person {
 		this.address = address;
 	}
 
-
+	@Column(name="phone_no")
 	public PhoneNo getPhoneNo() {
 		return phoneNo;
 	}
@@ -88,7 +117,7 @@ public abstract class Person {
 		this.phoneNo = phoneNo;
 	}
 
-
+	@Column(name="email_id")
 	public Email getEmailId() {
 		return emailId;
 	}
@@ -119,7 +148,7 @@ public abstract class Person {
 		this.dateOfJoining = dateOfJoining;
 	}
 
-	
+	@Column(name="preferred_language")
 	public LanguageEnum getPreferredLanguage() {
 		return preferredLanguage;
 	}
@@ -130,12 +159,14 @@ public abstract class Person {
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", address=" + address + ", phoneNo=" + phoneNo + ", emailId=" + emailId
-				+ ", dateOfBirth=" + dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", preferredLanguage="
-				+ preferredLanguage + "]";
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", passHash=" + passHash
+				+ ", address=" + address + ", phoneNo=" + phoneNo + ", emailId=" + emailId + ", dateOfBirth="
+				+ dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", preferredLanguage=" + preferredLanguage + "]";
 	}
-	
+
+
 	
 }

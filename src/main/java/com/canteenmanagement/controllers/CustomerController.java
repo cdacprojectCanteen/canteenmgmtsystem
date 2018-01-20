@@ -18,23 +18,23 @@ import com.canteenmanagement.services.CustomerService;
 @RequestMapping("/Customer")
 public class CustomerController {
 	
-	@Autowired
-	private CustomerService customerService;
+//	@Autowired
+//	private CustomerService customerService;
 	
-	@GetMapping("/")
-	public List<Customer> getCustomers(){
-		return customerService.getAll();
-	}
-	
-	@PostMapping
-	public boolean addCustomer() {
-		customerService.add(new Customer());
-		return false;
-	}
-	
-	@GetMapping("/{custId}")
-	
-	public Customer getCustomer(@PathVariable Integer custId) {
-		return null;
-	}
+//	@GetMapping("/")
+//	public List<Customer> getCustomers(){
+//		return customerService.getAll();
+//	}
+//	
+//	@PostMapping
+//	public boolean addCustomer() {
+//		customerService.add(new Customer());
+//		return false;
+//	}
+//	
+//	@GetMapping("/{custId}")
+//	
+//	public Customer getCustomer(@PathVariable Integer custId) {
+//		return null;
+//	}
 }
