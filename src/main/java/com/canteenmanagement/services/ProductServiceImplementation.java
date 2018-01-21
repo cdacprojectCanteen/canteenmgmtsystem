@@ -14,54 +14,48 @@ import com.canteenmanagement.pojos.Product;
 @Transactional
 public class ProductServiceImplementation implements ProductService {
 	
-//	@Autowired
-//	private ProductDao productDao;
+	@Autowired
+	private ProductDao productDao;
 
 	@Override
-	public void add(Product product) {
-//		productDao.add(product);
+	public Integer add(Product product) {
+		return productDao.add(product);
 	}
 
 	@Override
-	public void update(Product product) {
-		// TODO Auto-generated method stub
-		
+	public Product update(Product product) {
+		productDao.update(product);
+		return product;
 	}
 
 	@Override
-	public void delete(Product product) {
-		// TODO Auto-generated method stub
-		
+	public Product delete(Product product) {
+		return productDao.delete(product);
 	}
 
 	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+	public Product delete(Integer id) {
+		return productDao.delete(id);
 	}
 
 	@Override
 	public Product get(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.get(id);
 	}
 
 	@Override
-	public List<Product> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> get() {
+		return productDao.get();
 	}
 
 	@Override
-	public List<Product> getProductsByCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> get(Category category) {
+		return productDao.get(category);
 	}
 
 	@Override
-	public List<Product> getProductsByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> get(String category) {
+		return productDao.get(category);
 	}
 
 

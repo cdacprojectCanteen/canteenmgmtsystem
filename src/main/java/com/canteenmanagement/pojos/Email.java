@@ -2,9 +2,6 @@ package com.canteenmanagement.pojos;
 
 import javax.persistence.Embeddable;
 
-import com.canteenmanagement.exceptions.InvalidEmailException;
-import com.canteenmanagement.utils.Validator;
-
 @Embeddable
 public class Email {
 	String email;

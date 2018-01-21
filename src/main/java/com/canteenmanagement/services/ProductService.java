@@ -6,6 +6,6 @@ import com.canteenmanagement.pojos.Category;
 import com.canteenmanagement.pojos.Product;
 
 public interface ProductService extends CanteenService<Product> {
-	List<Product> getProductsByCategory(Category category);
-	List<Product> getProductsByCategory(String category);
+	List<Product> get(Category category);
+	List<Product> get(String category);
 }

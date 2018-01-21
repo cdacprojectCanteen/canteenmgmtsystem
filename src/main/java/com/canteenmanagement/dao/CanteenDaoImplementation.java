@@ -6,33 +6,35 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.canteenmanagement.pojos.Product;
 
-public abstract class Canteen<T> implements CanteenDao<T> {
+public abstract class CanteenDaoImplementation<T> implements CanteenDao<T> {
 	@Autowired
 	protected SessionFactory sessionFactory;
 
 	@Override
-	public void add(T t) {
-		sessionFactory.getCurrentSession().save(t);
+	public Integer add(T t) {
+		return (Integer) sessionFactory.getCurrentSession().save(t);
 	}
 
 	@Override
-	public void update(T t) {
+	public T update(T t) {
 		sessionFactory.getCurrentSession().update(t);
+		return t;
 	}
 
 	@Override
-	public void delete(T t) {
+	public T delete(T t) {
 		sessionFactory.getCurrentSession().delete(t);
+		return t;
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public T delete(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		T t = (T) session.get(this.getClass(), id); //TODO VERIFY
 		System.out.println("this.getClass() gives: "+this.getClass());
-		session.delete(t);		
+		session.delete(t);	
+		return t;
 	}
 	
 	@Override
