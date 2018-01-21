@@ -3,10 +3,14 @@ package com.canteenmanagement.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.canteenmanagement.dao.CustomerDao;
 import com.canteenmanagement.pojos.Customer;
 
+@Service
+@Transactional
 public class CustomerServiceImplementation implements CanteenService<Customer> {
 
 	@Autowired
