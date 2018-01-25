@@ -8,16 +8,26 @@ import javax.persistence.Id;
 
 @Entity
 public class Category {
-	private String categoryId;
+	private Integer categoryId;
 	private String name;
 	
+	
+	public Category() {
+		
+	}
+	
+	public Category(Integer categoryId, String name) {
+		super();
+		this.categoryId = categoryId;
+		this.name = name;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id")
-	public String getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	public String getName() {

@@ -1,30 +1,37 @@
 package com.canteenmanagement.pojos;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.canteenmanagement.utils.Gender;
 import com.canteenmanagement.utils.LanguageEnum;
 
-@Inheritance(strategy=InheritanceType.JOINED)
-@Entity
+//@Inheritance(strategy=InheritanceType.JOINED)
+//@Entity
+@MappedSuperclass
 public abstract class Person {
 	private Integer id;
 	
 	private String firstName;
 	private String lastName; //OPTIONAL
 	private String passHash; //TODO integrate with BCrypt
-	private Address address; //OPTIONAL
-	private PhoneNo phoneNo;
-	private Email emailId;	//REQUIRED
-	private LocalDate dateOfBirth;
-	private LocalDate dateOfJoining; //AUTOMATIC
+	private Gender gender; //OPTIONAL
+	private String phoneNo;
+	private String email;	//REQUIRED
+
+	private Date dateOfBirth;
+	
+	private Date dateOfJoining; //AUTOMATIC
+	private String profilePic;
 	private LanguageEnum preferredLanguage; //FUTURE IMPLEMENTATION
 	
 	
@@ -32,23 +39,23 @@ public abstract class Person {
 		super();
 	}
 
-	
-	
-	public Person(Integer id, String firstName, String lastName, String passHash, Address address, PhoneNo phoneNo,
-			Email emailId, LocalDate dateOfBirth, LocalDate dateOfJoining, LanguageEnum preferredLanguage) {
+
+	public Person(Integer id, String firstName, String lastName, String passHash, Gender gender, String phoneNo,
+			String email, Date dateOfBirth, Date dateOfJoining, String profilePic,
+			LanguageEnum preferredLanguage) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.passHash = passHash;
-		this.address = address;
+		this.gender = gender;
 		this.phoneNo = phoneNo;
-		this.emailId = emailId;
+		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfJoining = dateOfJoining;
+		this.profilePic = profilePic;
 		this.preferredLanguage = preferredLanguage;
 	}
-
 
 
 	@Id
@@ -96,59 +103,71 @@ public abstract class Person {
 		this.passHash = passHash;
 	}
 
-
-
-	public Address getAddress() {
-		return address;
+	@Enumerated(EnumType.STRING)
+	public Gender getGender() {
+		return gender;
 	}
 
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
-	@Column(name="phone_no")
-	public PhoneNo getPhoneNo() {
+	@Column(name="phone_no", unique=true)
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
 
-	public void setPhoneNo(PhoneNo phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
-	@Column(name="email_id")
-	public Email getEmailId() {
-		return emailId;
+	@Column(unique=true)
+	public String getEmail() {
+		return email;
 	}
 
 
-	public void setEmailId(Email emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
 	@Column(name="date_of_birth")
-	public LocalDate getDateOfBirth() {
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
 	@Column(name="date_of_joining")
-	public LocalDate getDateOfJoining() {
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDateOfJoining() {
 		return dateOfJoining;
 	}
 
 
-	public void setDateOfJoining(LocalDate dateOfJoining) {
+	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
+	
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
 
 	@Column(name="preferred_language")
+	@Enumerated(EnumType.STRING)
 	public LanguageEnum getPreferredLanguage() {
 		return preferredLanguage;
 	}
@@ -163,7 +182,7 @@ public abstract class Person {
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", passHash=" + passHash
-				+ ", address=" + address + ", phoneNo=" + phoneNo + ", emailId=" + emailId + ", dateOfBirth="
+				+ ", gender=" + gender + ", phoneNo=" + phoneNo + ", emailId=" + email + ", dateOfBirth="
 				+ dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", preferredLanguage=" + preferredLanguage + "]";
 	}
 

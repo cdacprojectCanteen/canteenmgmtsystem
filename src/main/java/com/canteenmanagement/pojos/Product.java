@@ -21,6 +21,7 @@ public class Product {
 	private String name;
 	private Category category;
 	private double price;
+	private double oldPrice;
 	private double quantity;
 	private List<String> tags;
 	private String description;
@@ -29,17 +30,19 @@ public class Product {
 
 	}
 	
-	public Product(Integer productId, String name, Category category, double price, double quantity, List<String> tags,
-			String description) {
+	public Product(Integer productId, String name, Category category, double price, double oldPrice, double quantity,
+			List<String> tags, String description) {
 		super();
 		this.productId = productId;
 		this.name = name;
 		this.category = category;
 		this.price = price;
+		this.oldPrice = oldPrice;
 		this.quantity = quantity;
 		this.tags = tags;
 		this.description = description;
 	}
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -78,6 +81,15 @@ public class Product {
 		this.price = price;
 	}
 	
+	@Column(name="old_price")
+	public double getOldPrice() {
+		return oldPrice;
+	}
+
+	public void setOldPrice(double oldPrice) {
+		this.oldPrice = oldPrice;
+	}
+
 	public double getQuantity() {
 		return quantity;
 	}
@@ -94,7 +106,7 @@ public class Product {
 		this.description = description;
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="product_tags",joinColumns=@JoinColumn(name="product_id"))
 	public List<String> getTags() {
 		return tags;
@@ -103,6 +115,14 @@ public class Product {
 	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", name=" + name + ", category=" + category + ", price=" + price
+				+ ", oldPrice=" + oldPrice + ", quantity=" + quantity + ", tags=" + tags + ", description="
+				+ description + "]";
+	}
+	
 	
 	
 }

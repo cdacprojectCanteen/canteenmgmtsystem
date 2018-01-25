@@ -2,7 +2,10 @@ package com.canteenmanagement.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.canteenmanagement.pojos.Product;
 import com.canteenmanagement.services.ProductService;
 
+@CrossOrigin(origins= "*")
 @RestController
 @RequestMapping("/Product")
 public class ProductController {
@@ -23,7 +27,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping("/")
-	public List<Product> getProducts(){
+	public List<Product> getProducts(HttpServletResponse response){
 		return productService.get();
 	}
 	
@@ -32,14 +36,20 @@ public class ProductController {
 		return productService.get(productId);
 	}
 	
-	@PostMapping
-	public Integer addProduct(@RequestBody Product product) {
-		return productService.add(product);
+	
+	@PostMapping("/")
+	public Integer addProduct(@RequestBody Product product, HttpServletResponse  response) {
+//		System.out.println("<<<<<<<<<<-----------Adding products--------->>>>>>>>>>"+product.toString());
+		if(product != null)
+			return productService.add(product);
+		return -1;
 	}
 	
-	@PutMapping("/{productId}")
-	public Product updateProduct(@PathVariable Integer productId, @RequestBody Product product) {
-		return productService.update(product);
+	@PutMapping("/")
+	public Product updateProduct(@RequestBody Product product) {
+		if(product != null)
+			return productService.update(product);
+		return null;
 	}
 	
 	@DeleteMapping("/{productId}")

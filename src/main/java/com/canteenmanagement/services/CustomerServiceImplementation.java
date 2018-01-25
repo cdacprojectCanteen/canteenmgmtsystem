@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.canteenmanagement.dao.CustomerDao;
 import com.canteenmanagement.pojos.Customer;
+import com.canteenmanagement.pojos.Order;
 
 @Service
 @Transactional
-public class CustomerServiceImplementation implements CanteenService<Customer> {
+public class CustomerServiceImplementation implements CustomerService {
 
 	@Autowired
 	private CustomerDao customerDao;
@@ -47,4 +48,23 @@ public class CustomerServiceImplementation implements CanteenService<Customer> {
 		return customerDao.get();
 	}
 
+	@Override
+	public List<Order> getOrders(Customer customer) {
+		return customerDao.getOrders(customer);
+	}
+
+	@Override
+	public List<Order> getOrders(Integer customerId) {
+		return customerDao.getOrders(customerId);
+	}
+
+	@Override
+	public boolean isUniqueEmail(String email) {
+		return customerDao.isUniqueEmail(email);
+	}
+
+	@Override
+	public boolean isUniquePhoneNo(String phoneNo) {
+		return customerDao.isUniquePhoneNo(phoneNo);
+	}
 }

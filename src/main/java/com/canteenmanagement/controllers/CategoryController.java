@@ -13,42 +13,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.canteenmanagement.pojos.Employee;
-import com.canteenmanagement.services.EmployeeService;
+import com.canteenmanagement.pojos.Category;
+import com.canteenmanagement.services.CategoryService;
 
 @CrossOrigin(origins= "*")
 @RestController
-@RequestMapping("/Employee")
-public class EmployeeController {
+@RequestMapping("/Category")
+public class CategoryController {
+	
 	@Autowired
-	private EmployeeService employeeService;
+	private CategoryService categoryService;
 	
 	@GetMapping("/")
-	public List<Employee> getEmployees(){
-		return employeeService.get();
+	public List<Category> getCategorys(){
+		return categoryService.get();
 	}
 	
-	@GetMapping("/{empId}")
-	public Employee getEmployee(@PathVariable Integer empId) {
-		return employeeService.get(empId);
+	@GetMapping("/{categoryId}")
+	public Category getCategory(@PathVariable Integer categoryId) {
+		return categoryService.get(categoryId);
 	}
 	
 	@PostMapping
-	public Integer addEmployee(@RequestBody Employee employee) {
-		if(employee != null)
-			return employeeService.add(employee);
+	public Integer addCategory(@RequestBody Category category) {
+		if(category != null)
+			return categoryService.add(category);
 		return -1;
 	}
 	
 	@PutMapping("/")
-	public Employee updateEmployee(@RequestBody Employee employee) {
-		if(employee != null)
-			return employeeService.update(employee);
+	public Category updateCategory(@RequestBody Category category) {
+		if(category != null)
+			return categoryService.update(category);
 		return null;
 	}
 	
-	@DeleteMapping("/{empId}")
-	public Employee deleteEmployee(@PathVariable Integer empId) {
-		return employeeService.delete(empId);
+	@DeleteMapping("/{categoryId}")
+	public Category deleteCategory(@PathVariable Integer categoryId) {
+		return categoryService.delete(categoryId);
 	}
+	
 }

@@ -11,7 +11,7 @@ import com.canteenmanagement.pojos.Order;
 
 @Service
 @Transactional
-public class OrderServiceImplementation implements CanteenService<Order> {
+public class OrderServiceImplementation implements OrderService {
 
 	@Autowired
 	private OrderDao orderDao;
@@ -45,6 +45,12 @@ public class OrderServiceImplementation implements CanteenService<Order> {
 	@Override
 	public List<Order> get() {
 		return orderDao.get();
+	}
+
+	@Override
+	public double getBill(Order order) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

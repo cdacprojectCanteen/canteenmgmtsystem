@@ -26,7 +26,7 @@ public class Employee extends Person {
 		this.salary = salary;
 	}
 
-
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="department_id")
 	public Department getDepartment() {

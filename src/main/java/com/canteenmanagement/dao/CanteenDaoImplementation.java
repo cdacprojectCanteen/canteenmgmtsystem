@@ -39,7 +39,7 @@ public abstract class CanteenDaoImplementation<T> implements CanteenDao<T> {
 	
 	@Override
 	public List<T> get() {
-		String jpql = "SELECT t from T";
+		String jpql = "SELECT t from "+this.getClass();
 		Session session = sessionFactory.getCurrentSession();
 		List<T> list = (List<T>) session.createQuery(jpql, this.getClass()).getResultList();
 		return list;

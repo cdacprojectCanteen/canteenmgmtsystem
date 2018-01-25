@@ -11,7 +11,7 @@ import com.canteenmanagement.pojos.Employee;
 
 @Service
 @Transactional
-public class EmployeeServiceImplementation implements CanteenService<Employee> {
+public class EmployeeServiceImplementation implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao employeeDao;

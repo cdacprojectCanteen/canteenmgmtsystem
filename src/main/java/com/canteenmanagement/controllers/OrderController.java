@@ -3,6 +3,7 @@ package com.canteenmanagement.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.canteenmanagement.pojos.Order;
 import com.canteenmanagement.services.OrderService;
 
+@CrossOrigin(origins= "*")
 @RestController
 @RequestMapping("/Order")
 public class OrderController {
@@ -36,8 +38,8 @@ public class OrderController {
 		return orderService.add(order);
 	}
 	
-	@PutMapping("/{orderId}")
-	public Order updateOrder(@PathVariable Integer orderId, @RequestBody Order order) {
+	@PutMapping("/")
+	public Order updateOrder(@RequestBody Order order) {
 		return orderService.update(order);
 	}
 	
