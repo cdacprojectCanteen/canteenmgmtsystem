@@ -3,5 +3,6 @@ package com.canteenmanagement.services;
 import com.canteenmanagement.pojos.Order;
 
 public interface OrderService extends CanteenService<Order> {
-	double getBill(Order order);
+//	double getBill(Order order);
+	Order getOrderByCoupon(String couponCode);
 }

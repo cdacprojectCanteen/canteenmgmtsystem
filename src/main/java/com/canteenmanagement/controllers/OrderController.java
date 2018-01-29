@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.canteenmanagement.pojos.Order;
 import com.canteenmanagement.services.OrderService;
+import com.canteenmanagement.utils.OrderStatus;
+import com.canteenmanagement.utils.TokenGenerator;
 
 @CrossOrigin(origins= "*")
 @RestController
@@ -33,9 +35,20 @@ public class OrderController {
 		return orderService.get(orderId);
 	}
 	
-	@PostMapping
-	public Integer addOrder(@RequestBody Order order) {
-		return orderService.add(order);
+	@PostMapping(path="/",produces="text/plain")
+	public String addOrder(@RequestBody Order order) {
+		order.setOrderStatus(OrderStatus.NEW);
+		String couponCode;
+		while(true) {
+			TokenGenerator couponGenerator = new TokenGenerator(6);
+			couponCode = couponGenerator.generateToken();
+			Order o = orderService.getOrderByCoupon(couponCode);
+			if(o==null)
+				break;
+		}
+		order.setCouponCode(couponCode);
+		orderService.add(order);
+		return couponCode;
 	}
 	
 	@PutMapping("/")

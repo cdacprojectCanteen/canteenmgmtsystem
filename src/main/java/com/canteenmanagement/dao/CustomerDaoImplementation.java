@@ -110,7 +110,6 @@ public class CustomerDaoImplementation extends CanteenDaoImplementation<Customer
 			return false;
 		}
 		catch(NoResultException e) {
-			System.out.println("This is Unique phone");
 			return true;
 		}
 	}

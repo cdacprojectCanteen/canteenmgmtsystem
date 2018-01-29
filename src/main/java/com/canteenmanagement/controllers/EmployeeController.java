@@ -51,4 +51,14 @@ public class EmployeeController {
 	public Employee deleteEmployee(@PathVariable Integer empId) {
 		return employeeService.delete(empId);
 	}
+	
+	@PostMapping("/IsUniqueEmail")
+	public boolean isUniqueEmail(@RequestBody String email){
+		return employeeService.isUniqueEmail(email);
+	}
+	
+	@PostMapping("/IsUniquePhoneNo")
+	public boolean isUniquePhoneNo(@RequestBody String phoneNo){
+		return employeeService.isUniquePhoneNo(phoneNo);
+	}
 }

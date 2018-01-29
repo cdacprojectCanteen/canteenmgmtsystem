@@ -13,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.canteenmanagement.utils.Gender;
-import com.canteenmanagement.utils.LanguageEnum;
 
 //@Inheritance(strategy=InheritanceType.JOINED)
 //@Entity
@@ -22,27 +21,25 @@ public abstract class Person {
 	private Integer id;
 	
 	private String firstName;
-	private String lastName; //OPTIONAL
+	private String lastName;
 	private String passHash; //TODO integrate with BCrypt
-	private Gender gender; //OPTIONAL
+	private Gender gender;
 	private String phoneNo;
-	private String email;	//REQUIRED
+	private String email;
 
 	private Date dateOfBirth;
 	
-	private Date dateOfJoining; //AUTOMATIC
-	private String profilePic;
-	private LanguageEnum preferredLanguage; //FUTURE IMPLEMENTATION
+	private Date dateOfJoining;
 	
 	
 	public Person() {
 		super();
 	}
 
-
+	
+	
 	public Person(Integer id, String firstName, String lastName, String passHash, Gender gender, String phoneNo,
-			String email, Date dateOfBirth, Date dateOfJoining, String profilePic,
-			LanguageEnum preferredLanguage) {
+			String email, Date dateOfBirth, Date dateOfJoining) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -53,9 +50,8 @@ public abstract class Person {
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfJoining = dateOfJoining;
-		this.profilePic = profilePic;
-		this.preferredLanguage = preferredLanguage;
 	}
+
 
 
 	@Id
@@ -155,37 +151,13 @@ public abstract class Person {
 	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
+
 	
-	public String getProfilePic() {
-		return profilePic;
-	}
-
-
-	public void setProfilePic(String profilePic) {
-		this.profilePic = profilePic;
-	}
-
-
-	@Column(name="preferred_language")
-	@Enumerated(EnumType.STRING)
-	public LanguageEnum getPreferredLanguage() {
-		return preferredLanguage;
-	}
-
-
-	public void setPreferredLanguage(LanguageEnum preferredLanguage) {
-		this.preferredLanguage = preferredLanguage;
-	}
-
-
-
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", passHash=" + passHash
-				+ ", gender=" + gender + ", phoneNo=" + phoneNo + ", emailId=" + email + ", dateOfBirth="
-				+ dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", preferredLanguage=" + preferredLanguage + "]";
+				+ ", gender=" + gender + ", phoneNo=" + phoneNo + ", email=" + email + ", dateOfBirth=" + dateOfBirth
+				+ ", dateOfJoining=" + dateOfJoining + "]";
 	}
-
-
 	
 }

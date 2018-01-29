@@ -17,7 +17,7 @@ public class CategoryDaoImplementation implements CategoryDao {
 	
 	@Override
 	public Integer add(Category category) {
-		return (Integer) sessionFactory.getCurrentSession().save(category);
+		return (Integer)sessionFactory.getCurrentSession().save(category);
 	}
 
 	@Override

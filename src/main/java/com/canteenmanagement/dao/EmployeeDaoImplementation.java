@@ -2,6 +2,8 @@ package com.canteenmanagement.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +59,37 @@ public class EmployeeDaoImplementation extends CanteenDaoImplementation<Employee
 		sessionFactory.getCurrentSession().clear();
 		employee.setPassHash(""); //TODO Check Side Effect
 		return employee;
+	}
+	
+	@Override
+	public boolean isUniqueEmail(String email) {
+		String jpql= "SELECT e.email from Employee e where e.email=:email";
+		try {
+//			String eMail = sessionFactory.getCurrentSession().createQuery(jpql, String.class).setParameter("email", email).getSingleResult();
+			sessionFactory.getCurrentSession()
+					.createQuery(jpql, String.class)
+					.setParameter("email", email)
+					.getSingleResult();
+			return false;
+		}
+		catch(NoResultException e) {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean isUniquePhoneNo(String phoneNo) {
+		String jpql= "SELECT e.phoneNo from Employee e where e.phoneNo=:phoneNo";
+		try {
+//			String phNo = sessionFactory.getCurrentSession().createQuery(jpql, String.class).setParameter("phoneNo", phoneNo).getSingleResult();
+			sessionFactory.getCurrentSession()
+					.createQuery(jpql, String.class)
+					.setParameter("phoneNo", phoneNo)
+					.getSingleResult();
+			return false;
+		}
+		catch(NoResultException e) {
+			return true;
+		}
 	}
 }

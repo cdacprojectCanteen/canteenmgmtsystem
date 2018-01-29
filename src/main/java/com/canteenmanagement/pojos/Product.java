@@ -25,13 +25,14 @@ public class Product {
 	private double quantity;
 	private List<String> tags;
 	private String description;
+	private String productImageUrl;
 	
 	public Product() {
 
 	}
 	
 	public Product(Integer productId, String name, Category category, double price, double oldPrice, double quantity,
-			List<String> tags, String description) {
+			List<String> tags, String description, String productPicUrl) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -41,6 +42,7 @@ public class Product {
 		this.quantity = quantity;
 		this.tags = tags;
 		this.description = description;
+		this.productImageUrl = productPicUrl;
 	}
 
 
@@ -115,14 +117,20 @@ public class Product {
 	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
+	
+	public String getProductImageUrl() {
+		return productImageUrl;
+	}
+
+	public void setProductImageUrl(String productImageUrl) {
+		this.productImageUrl = productImageUrl;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + ", category=" + category + ", price=" + price
 				+ ", oldPrice=" + oldPrice + ", quantity=" + quantity + ", tags=" + tags + ", description="
-				+ description + "]";
+				+ description + ", productPicUrl=" + productImageUrl + "]";
 	}
-	
-	
-	
+
 }

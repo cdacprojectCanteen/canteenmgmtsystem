@@ -48,9 +48,10 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public double getBill(Order order) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Order getOrderByCoupon(String couponCode) {
+		return orderDao.getOrderByCoupon(couponCode);
 	}
+
+	
 
 }

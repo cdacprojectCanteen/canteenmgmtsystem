@@ -46,5 +46,15 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	public List<Employee> get() {
 		return employeeDao.get();
 	}
+	
+	@Override
+	public boolean isUniqueEmail(String email) {
+		return employeeDao.isUniqueEmail(email);
+	}
+
+	@Override
+	public boolean isUniquePhoneNo(String phoneNo) {
+		return employeeDao.isUniquePhoneNo(phoneNo);
+	}
 
 }

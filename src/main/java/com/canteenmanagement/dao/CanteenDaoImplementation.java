@@ -13,7 +13,7 @@ public abstract class CanteenDaoImplementation<T> implements CanteenDao<T> {
 
 	@Override
 	public Integer add(T t) {
-		return (Integer) sessionFactory.getCurrentSession().save(t);
+		return (Integer)sessionFactory.getCurrentSession().save(t);
 	}
 
 	@Override
