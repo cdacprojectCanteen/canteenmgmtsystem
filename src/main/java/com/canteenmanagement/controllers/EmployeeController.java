@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.canteenmanagement.pojos.Customer;
 import com.canteenmanagement.pojos.Employee;
 import com.canteenmanagement.services.EmployeeService;
 
@@ -46,6 +47,9 @@ public class EmployeeController {
 			return employeeService.update(employee);
 		return null;
 	}
+	
+
+	
 	
 	@DeleteMapping("/{empId}")
 	public Employee deleteEmployee(@PathVariable Integer empId) {

@@ -50,6 +50,15 @@ public class CustomerController {
 		return null;
 	}
 	
+//	@PutMapping("/UpdatePassword/{id}")
+//	public Customer updatePassword(@PathVariable Integer id, @RequestBody String oldPassword, @RequestBody String newPassword) {
+//		System.out.println("Customer Id: "+id);
+//		System.out.println("Old Password: "+oldPassword);
+//		System.out.println("New Password: "+newPassword);
+//		Customer customer = customerService.get(id);
+//		return customer;
+//	}
+	
 	@DeleteMapping("/{custId}")
 	public Customer deleteCustomer(@PathVariable Integer custId) {
 		return customerService.delete(custId);
