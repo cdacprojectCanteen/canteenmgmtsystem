@@ -55,6 +55,7 @@ public class ProductController {
 		System.out.println(productImage.getName()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+productImage.getOriginalFilename());
 		
 		
+		
 		if(product != null) {
 			Integer id;
 			if(product.getProductImageUrl() != null && product.getProductImageUrl().trim().length()>=3 && productImage.getOriginalFilename().lastIndexOf('.') != -1) {
@@ -82,6 +83,12 @@ public class ProductController {
 			@RequestPart(name="file",required=false) MultipartFile productImage, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		System.out.println(productImage.getName()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+productImage.getOriginalFilename());
 		System.out.println(product);
+		
+		Product oldProduct = productService.get(product.getProductId());
+		
+		if(product.getPrice()!=oldProduct.getPrice()) {
+			product.setOldPrice(oldProduct.getPrice());
+		}
 		
 		if(product != null) {
 			Product updatedProduct;

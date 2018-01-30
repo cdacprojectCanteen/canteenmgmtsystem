@@ -66,18 +66,18 @@ public class CustomerDaoImplementation extends CanteenDaoImplementation<Customer
 	
 	@Override
 	public List<Order> getOrders(Customer customer) {
-		String jpql = "SELECT o from Orders o where o.customer.id=:id";
+		String jpql = "SELECT o from Order o where o.customer.id=:id";
 		Session session = sessionFactory.getCurrentSession();
-		List<Order> orders = session.createQuery(jpql, Order.class).setParameter(":id", customer.getId()).getResultList();
+		List<Order> orders = session.createQuery(jpql, Order.class).setParameter("id", customer.getId()).getResultList();
 //		customer = sessionFactory.getCurrentSession().get(Customer.class, customer.getId());
 		return orders;
 	}
 
 	@Override
 	public List<Order> getOrders(Integer customerId) {
-		String jpql = "SELECT o from Orders o where o.customer.id=:id";
+		String jpql = "SELECT o from Order o where o.customer.id=:id";
 		Session session = sessionFactory.getCurrentSession();
-		List<Order> orders = session.createQuery(jpql, Order.class).setParameter(":id", customerId).getResultList();
+		List<Order> orders = session.createQuery(jpql, Order.class).setParameter("id", customerId).getResultList();
 //		customer = sessionFactory.getCurrentSession().get(Customer.class, customer.getId());
 		return orders;
 	}

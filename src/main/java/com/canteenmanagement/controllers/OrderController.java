@@ -60,4 +60,14 @@ public class OrderController {
 	public Order deleteOrder(@PathVariable Integer orderId) {
 		return orderService.delete(orderId);
 	}
+	
+	@GetMapping("/GetOrderByCoupon/{coupon}")
+	public Order getOrderByCoupon(@PathVariable String coupon) {
+		Order order = orderService.getOrderByCoupon(coupon);
+		if(order!=null)
+			return order;
+		order = new Order();
+		order.setOrderId(-1);
+		return order;
+	}
 }

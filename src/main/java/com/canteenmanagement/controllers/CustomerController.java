@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.canteenmanagement.pojos.Customer;
+import com.canteenmanagement.pojos.Order;
 import com.canteenmanagement.services.CustomerService;
 
 @CrossOrigin(origins= "*")
@@ -64,4 +65,9 @@ public class CustomerController {
 		return customerService.isUniquePhoneNo(phoneNo);
 	}
 	
+	@GetMapping("{custId}/Orders")
+	public List<Order> getOrders(@PathVariable Integer custId){
+		System.out.println(custId);
+		return customerService.getOrders(custId);
+	}
 }
